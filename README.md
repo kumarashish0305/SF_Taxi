@@ -24,6 +24,10 @@ The code is comprised of three main files inside the code folder:
 
 •Q1_CO2_POT.py: Calculation of potential for CO2 emission reduction using current data
 
+•NN.py: A Neural network based model for developing clusters is also Work under process.
+
+Main code has been referenced from work of various kagglers and Data scientists i follow. Specific changes for cabspotting are under process.
+
 Getting started
 
 This implementation is based on community databricks platform which provides 6 GB memory and 2 clusters.

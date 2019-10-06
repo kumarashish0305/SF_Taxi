@@ -16,8 +16,11 @@ Code structure
 
 The code is comprised of three main files inside the code folder:
 •Import_data_Db.py: Methods for loading, cleaning and pre-processing the tar.gz file to final text file with all Taxi's data
+
 •data.py: Creating final dataset used for Visualisations, ML model and the questions. Data is for one major location Caltrain in SF
+
 •Q2_ML_PRED.py: Linear regression based predictor model which is super efficient for taxi data and takes 1 min to create a basic model
+
 •Q1_CO2_POT.py: Calculation of potential for CO2 emission reduction using current data
 
 Getting started

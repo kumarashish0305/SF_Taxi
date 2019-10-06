@@ -1,3 +1,33 @@
+import pickle
+import csv
+import calendar
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib.ticker import  MultipleLocator, FormatStrFormatter
+from scipy.interpolate import spline
+import tensorflow as tf 
+from sklearn.preprocessing import scale 
+from keras.models import Sequential 
+from keras.optimizers import SGD, Adam, Adagrad 
+from keras import backend as K 
+from keras.layers.embeddings import Embedding 
+from keras.layers.core import Dense, Reshape, Merge, Activation, Dropout 
+from keras.callbacks import ModelCheckpoint 
+
+
+# Gather some metadata that will later be useful during training 
+        metadata = { 
+             'dayhour': 24,  # Number of hours in one day (i.e. 24). 
+             'Dayperweek': 7, 
+             'Weekyear': 52,
+             'TaxiID': len(TaxiID_ENCODED.classes_)
+        } 
+
+
+
 def create_model(metadata, clusters):
     """
     Creates all the layers for our neural network model.
@@ -63,3 +93,25 @@ def create_model(metadata, clusters):
     model.compile(loss=Waiting_Distance, optimizer=optimizer)
 
     return model
+
+clusters = pd.DataFrame({
+    'approx_latitudes': df['latitude'].round(4),
+    'approx_longitudes': df['longitude'].round(4)
+})
+
+bandwidth = estimate_bandwidth(clusters, quantile=0.0002)
+ms = MeanShift(bandwidth=bandwidth, bin_seeding=True)
+ms.fit(clusters)
+clusters = ms.cluster_centers_
+
+# Estimate clusters from all destination points
+clusters = get_clusters(data.train_labels)
+print("Number of estimated clusters: %d" % len(clusters))
+
+plt.figure(figsize=(6,6))
+plt.scatter(clusters[:,1], clusters[:,0], c='#cccccc', s=2)
+plt.axis('off')
+plt.gca().xaxis.set_visible(False)
+plt.gca().yaxis.set_visible(False)
+plt.gca().autoscale_view('tight')
+

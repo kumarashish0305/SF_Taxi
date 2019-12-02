@@ -3,11 +3,10 @@ Background
 This repository contains code written for the "Cabspotting" data. 
 The project was built on databricks using Pyspark on top of Spark framework.
 
-Databricks the platform by Microsoft Azure comes on top of Azure cloud.
 Apache Spark is built for efficient data processing and parallelising the ML processes on multiple clusters and multi-cores.
 
 Only limitation comes in the process with usage of pandas dataframe and scikit learn based libraries which can not be parallelised.
-Here, though we have used these libraries.
+
 The author implore usage of MlLib library for Machine Learning projects with production ready codes.
 
 Alternatively. containers for tensorflow can be set up on docker container and used efficiently.
